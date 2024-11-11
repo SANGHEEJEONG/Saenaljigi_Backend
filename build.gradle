@@ -33,6 +33,12 @@ dependencies {
     // https://mvnrepository.com/artifact/org.jsoup/jsoup
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.18.1'
 
+    // Selenium WebDriver and ChromeDriver with version 4.19.1
+    implementation 'org.seleniumhq.selenium:selenium-java:4.19.1'
+    implementation 'org.seleniumhq.selenium:selenium-chrome-driver:4.19.1'
+
+
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
 }
 
 tasks.named('test') {
