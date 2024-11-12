@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Saenaljigi.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Saenaljigi.main.iml" />
+<<<<<<< HEAD
+      <module fileurl="file://$PROJECT_DIR$/.idea/spring.iml" filepath="$PROJECT_DIR$/.idea/spring.iml" />
+=======
+>>>>>>> upstream/main
     </modules>
   </component>
 </project>
