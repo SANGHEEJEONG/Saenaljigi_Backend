@@ -10,5 +10,9 @@
         <module name="Saenaljigi.main" />
       </profile>
     </annotationProcessing>
+<<<<<<< HEAD
+=======
+    <bytecodeTargetLevel target="17" />
+>>>>>>> upstream/main
   </component>
 </project>
