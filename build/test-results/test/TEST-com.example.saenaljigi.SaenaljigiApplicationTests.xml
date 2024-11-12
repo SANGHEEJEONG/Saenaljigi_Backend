@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.saenaljigi.SaenaljigiApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-11-10T18:41:10" hostname="JEONGSANGHEE" time="1.063">
+  <properties/>
+  <testcase name="contextLoads()" classname="com.example.saenaljigi.SaenaljigiApplicationTests" time="1.063"/>
+  <system-out><![CDATA[03:41:06.576 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.saenaljigi.SaenaljigiApplicationTests]: SaenaljigiApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+03:41:06.710 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.saenaljigi.SaenaljigiApplication for test class com.example.saenaljigi.SaenaljigiApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.3)
+
+2024-11-11T03:41:07.219+09:00  INFO 3876 --- [    Test worker] c.e.s.SaenaljigiApplicationTests         : Starting SaenaljigiApplicationTests using Java 17.0.12 with PID 3876 (started by jshwj in C:\Users\jshwj\OneDrive\Saenaljigi_Backend)
+2024-11-11T03:41:07.221+09:00  INFO 3876 --- [    Test worker] c.e.s.SaenaljigiApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2024-11-11T03:41:09.175+09:00  WARN 3876 --- [    Test worker] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-11-11T03:41:09.394+09:00  INFO 3876 --- [    Test worker] c.e.s.SaenaljigiApplicationTests         : Started SaenaljigiApplicationTests in 2.415 seconds (process running for 3.997)
+상세 페이지 응답 데이터: 
+{"root":[{"regname":"행정실","file_view_flag5":"N","file_name1":"240708_중간정기퇴사 시 금액 환불 신청 방법 안내001.png","file_view_flag4":"N","file_view_flag3":"N","locgbn":"SJ","file_name2":"식비 환불 신청서_스위티움_퇴사확인필.hwp","viewpass":"SC","subject":"[기숙사] 중간/정기퇴사 시 금액 환불 신청 방법 안내","BBS_ID":"notice","top_flag":"Y","content_type":"A","contents":"<p><br><\/p>","img_view_flag":"Y","regdate":"2024-07-09","ref_seq":0,"visit_cnt":934,"regid":"sjdorm3","file_view_flag2":"N","file_view_flag1":"Y","seq":35946,"reply_cnt":0}]}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
