@@ -125,7 +125,6 @@ public class MenuCrawlService {
     private Calendar getCalendarByDate(String dateText) {
         dateText = dateText.trim();
 
-        // "2024년 11월 4일" 형식에 맞는 DateTimeFormatter 설정
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일");
         LocalDate date = LocalDate.parse(dateText, formatter);
         return calendarService.getOrCreateCalendarByDate(date);
@@ -149,26 +148,26 @@ public class MenuCrawlService {
     }
 
 
-    private void addFixedBreakfastMenus() {
-        // 모든 Calendar를 조회하여 조식 메뉴 추가
-        List<Calendar> calendars = calendarService.getAllCalendars();
-        for (Calendar calendar : calendars) {
-            MenuDto breakfastMenu = MenuDto.builder()
-                    .foodTime("BREAKFAST")
-                    .isCheck(false)
-                    .calendarId(calendar.getId())  // 필요 시 Calendar ID를 직접 참조
-                    .foods(List.of(
-                            FoodDto.builder()
-                                    .foodName("고정 조식 메뉴1")
-                                    .isSelected(false)
-                                    .build(),
-                            FoodDto.builder()
-                                    .foodName("고정 조식 메뉴2")
-                                    .isSelected(false)
-                                    .build()
-                    ))
-                    .build();
-            menuService.createMenu(breakfastMenu);
-        }
-    }
+//    private void addFixedBreakfastMenus() {
+//        // 모든 Calendar를 조회하여 조식 메뉴 추가
+//        List<Calendar> calendars = calendarService.getAllCalendars();
+//        for (Calendar calendar : calendars) {
+//            MenuDto breakfastMenu = MenuDto.builder()
+//                    .foodTime("조식")
+//                    .isCheck(false)
+//                    .calendarId(calendar.getId())  // 필요 시 Calendar ID를 직접 참조
+//                    .foods(List.of(
+//                            FoodDto.builder()
+//                                    .foodName("고정 조식 메뉴1")
+//                                    .isSelected(false)
+//                                    .build(),
+//                            FoodDto.builder()
+//                                    .foodName("고정 조식 메뉴2")
+//                                    .isSelected(false)
+//                                    .build()
+//                    ))
+//                    .build();
+//            menuService.createMenu(breakfastMenu);
+//        }
+//    }
 }

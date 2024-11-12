@@ -7,6 +7,6 @@ spring:
 
    jpa:
      hibernate:
-       ddl-auto: validate  # 애플리케이션 시작 시 테이블을 자동 생성
+       ddl-auto: validate
        dialect: org.hibernate.dialect.MySQLDialect  # MySQL 방언 설정
      show-sql: true  # 콘솔에 실행된 SQL을 출력
