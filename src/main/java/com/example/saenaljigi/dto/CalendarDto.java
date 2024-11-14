@@ -11,6 +11,7 @@ import java.util.List;
 @Getter
 @Builder
 public class CalendarDto {
+    private Long id;
     private LocalDate day;
     private Boolean isHilight;
     private Boolean isBreakfast;

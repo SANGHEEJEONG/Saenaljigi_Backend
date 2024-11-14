@@ -18,4 +18,12 @@ public class Calendar {
     private LocalDate day;
     private Boolean isHilight;
     private Boolean isBreakfast;
+    public void updateHilight(boolean isHilight) {
+        this.isHilight = isHilight;
+    }
+    public void updateBreakfast(boolean isBreakfast){
+        this.isBreakfast = isBreakfast;
+
+
+    }
 }
