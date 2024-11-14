@@ -1,3 +1,4 @@
+
 package com.example.saenaljigi.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
@@ -15,5 +16,6 @@ public class SwaggerConfig {
                         .version("1.0")
                         .description("Saenaljigi API 문서"));
     }
+
 
 }
