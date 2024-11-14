@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface FoodRepository extends JpaRepository<Food,Long> {
+    boolean existsByMenuIdAndIsSelected(Long menuId, boolean isSelected);
     List<Food> findByMenuId(Long menuId);
     void deleteByMenuId(Long menuId);
 }
