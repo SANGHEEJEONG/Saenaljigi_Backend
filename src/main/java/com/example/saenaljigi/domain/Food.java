@@ -1,10 +1,7 @@
 package com.example.saenaljigi.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Builder
@@ -21,8 +18,8 @@ public class Food {
     @ManyToOne
     @JoinColumn(name = "menu_id", nullable = false)
     private Menu menu;
-    public void updateFood(String name, boolean isSelected) {
-        this.foodName = name;
+    public void updateSelected(boolean isSelected) {
         this.isSelected = isSelected;
     }
+
 }
