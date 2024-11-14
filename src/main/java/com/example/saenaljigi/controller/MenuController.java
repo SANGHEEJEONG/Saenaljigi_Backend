@@ -19,11 +19,7 @@ import java.util.List;
 public class MenuController {
     private final MenuService menuService;
 
-//    @GetMapping("/{day}/{foodtime}")
-//    public List<MenuDto> findByFoodTimeAndCalendar(@PathVariable("day")LocalDate day, @PathVariable("foodtime")FoodTime foodTime){
-//        return menuService.findByFoodTimeAndCalendar(foodTime,day);
-//
-//    }
+
 
 
 }

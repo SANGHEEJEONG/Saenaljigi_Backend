@@ -46,7 +46,7 @@ dependencies {
     // WebDriverManager 의존성
     implementation 'io.github.bonigarcia:webdrivermanager:5.5.3'
     implementation 'mysql:mysql-connector-java:8.0.33'
-    runtimeOnly 'com.mysql:mysql-connector-j'
+//    runtimeOnly 'com.mysql:mysql-connector-j'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 }

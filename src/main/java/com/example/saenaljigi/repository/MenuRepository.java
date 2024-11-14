@@ -12,6 +12,7 @@ import java.util.List;
 
 @Repository
 public interface MenuRepository extends JpaRepository<Menu,Long>{
+    boolean existsByCalendarIdAndIsCheck(Long calendarId, boolean isCheck);
     boolean existsByCalendarAndFoodTime(Calendar calendar, FoodTime foodTime);
 
     List<Menu> findByCalendarId(Long calendarId);
