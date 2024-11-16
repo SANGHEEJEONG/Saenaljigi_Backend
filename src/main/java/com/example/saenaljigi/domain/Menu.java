@@ -26,8 +26,7 @@ public class Menu {
     @JoinColumn(name = "calendar_id", nullable = false)
     private Calendar calendar;
 
-    public void updateMenu(FoodTime foodTime, boolean isCheck) {
-        this.foodTime = foodTime;
+    public void updateCheck(boolean isCheck) {
         this.isCheck = isCheck;
     }
 }

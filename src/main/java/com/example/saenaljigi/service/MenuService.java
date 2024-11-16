@@ -25,11 +25,12 @@ public class MenuService {
     private final MenuRepository menuRepository;
     private final CalendarRepository calendarRepository;
     private final FoodRepository foodRepository;
+    //중복 입력 방지 로직
     public boolean existsByCalendarAndFoodTime(Calendar calendar, FoodTime foodTime) {
         return menuRepository.existsByCalendarAndFoodTime(calendar, foodTime);
     }
 
-
+//크롤링한 메뉴 저장로직
     @Transactional
     public MenuDto createMenu(MenuDto menuDto) {
         // Calendar 조회 또는 예외 발생
@@ -64,12 +65,12 @@ public class MenuService {
     }
 
 
-    @Transactional(readOnly = true)
-    public MenuDto getMenuById(Long id) {
-        Menu menu = menuRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Menu not found with id " + id));
-        return convertToDto(menu);
-    }
+//    @Transactional(readOnly = true)
+//    public MenuDto getMenuById(Long id) {
+//        Menu menu = menuRepository.findById(id)
+//                .orElseThrow(() -> new RuntimeException("Menu not found with id " + id));
+//        return convertToDto(menu);
+//    }
 
     @Transactional(readOnly = true)
     public List<MenuDto> getMenusByCalendarId(Long calendarId) {
@@ -80,53 +81,53 @@ public class MenuService {
     }
 
 
-    @Transactional
-    public MenuDto updateMenu(Long id, MenuDto menuDto) {
-        Menu menu = menuRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Menu not found with id " + id));
+//    @Transactional
+//    public MenuDto updateMenu(Long id, MenuDto menuDto) {
+//        Menu menu = menuRepository.findById(id)
+//                .orElseThrow(() -> new RuntimeException("Menu not found with id " + id));
+//
+//        menu.updateMenu(Enum.valueOf(com.example.saenaljigi.util.FoodTime.class, menuDto.getFoodTime()), menuDto.isCheck());
+//
+//        // 기존 Foods 삭제 및 새로운 Foods 저장
+//        foodRepository.deleteByMenuId(id);
+//        if (menuDto.getFoods() != null && !menuDto.getFoods().isEmpty()) {
+//            List<Food> foods = menuDto.getFoods().stream()
+//                    .map(foodDto -> Food.builder()
+//                            .foodName(foodDto.getFoodName())
+//                            .isSelected(foodDto.isSelected())
+//                            .menu(menu)
+//                            .build())
+//                    .collect(Collectors.toList());
+//            foodRepository.saveAll(foods);
+//        }
+//
+//        // 업데이트된 Menu를 MenuDto로 변환하여 반환
+//        return convertToDto(menu);
+//    }
+//    @Transactional
+//    public void deleteMenu(Long id) {
+//        Menu menu = menuRepository.findById(id)
+//                .orElseThrow(() -> new RuntimeException("Menu not found with id " + id));
+//        foodRepository.deleteByMenuId(id);
+//        menuRepository.delete(menu);
+//    }
 
-        menu.updateMenu(Enum.valueOf(com.example.saenaljigi.util.FoodTime.class, menuDto.getFoodTime()), menuDto.isCheck());
-
-        // 기존 Foods 삭제 및 새로운 Foods 저장
-        foodRepository.deleteByMenuId(id);
-        if (menuDto.getFoods() != null && !menuDto.getFoods().isEmpty()) {
-            List<Food> foods = menuDto.getFoods().stream()
-                    .map(foodDto -> Food.builder()
-                            .foodName(foodDto.getFoodName())
-                            .isSelected(foodDto.isSelected())
-                            .menu(menu)
-                            .build())
-                    .collect(Collectors.toList());
-            foodRepository.saveAll(foods);
-        }
-
-        // 업데이트된 Menu를 MenuDto로 변환하여 반환
-        return convertToDto(menu);
-    }
-    @Transactional
-    public void deleteMenu(Long id) {
-        Menu menu = menuRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Menu not found with id " + id));
-        foodRepository.deleteByMenuId(id);
-        menuRepository.delete(menu);
-    }
-
-    @Transactional(readOnly = true)
-    public List<CalendarDto> getAllCalendarsWithMenus() {
-        List<Calendar> calendars = calendarRepository.findAll();
-        return calendars.stream()
-                .map(calendar -> {
-                    List<MenuDto> menus = getMenusByCalendarId(calendar.getId());
-                    return CalendarDto.builder()
-//                            .id(calendar.getId())
-                            .day(calendar.getDay())
-                            .isHilight(calendar.getIsHilight())
-                            .isBreakfast(calendar.getIsBreakfast())
-                            .menus(menus)
-                            .build();
-                })
-                .collect(Collectors.toList());
-    }
+//    @Transactional(readOnly = true)
+//    public List<CalendarDto> getAllCalendarsWithMenus() {
+//        List<Calendar> calendars = calendarRepository.findAll();
+//        return calendars.stream()
+//                .map(calendar -> {
+//                    List<MenuDto> menus = getMenusByCalendarId(calendar.getId());
+//                    return CalendarDto.builder()
+////                            .id(calendar.getId())
+//                            .day(calendar.getDay())
+//                            .isHilight(calendar.getIsHilight())
+//                            .isBreakfast(calendar.getIsBreakfast())
+//                            .menus(menus)
+//                            .build();
+//                })
+//                .collect(Collectors.toList());
+//    }
 
     private MenuDto convertToDto(Menu menu) {
         // 관련된 Food 엔티티를 조회하여 FoodDto 리스트 생성
