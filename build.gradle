@@ -33,14 +33,22 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     // https://mvnrepository.com/artifact/org.jsoup/jsoup
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.18.1'
-    // Selenium Java 의존성
-    implementation 'org.seleniumhq.selenium:selenium-java:4.14.0'
+
+
+    // Selenium WebDriver and ChromeDriver with version 4.19.1
+    implementation 'org.seleniumhq.selenium:selenium-java:4.19.1'
+    implementation 'org.seleniumhq.selenium:selenium-chrome-driver:4.19.1'
+
+    //swagger
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+
+
     // WebDriverManager 의존성
     implementation 'io.github.bonigarcia:webdrivermanager:5.5.3'
     implementation 'mysql:mysql-connector-java:8.0.33'
-    runtimeOnly 'com.mysql:mysql-connector-j'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    runtimeOnly 'com.mysql:mysql-connector-j'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
 }
 
 tasks.named('test') {
