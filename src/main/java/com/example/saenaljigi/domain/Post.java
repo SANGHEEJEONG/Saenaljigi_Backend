@@ -17,8 +17,8 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
- //   @ManyToOne
- //   private User user;
+    @ManyToOne
+    private User user;
 
     private String title;
     private String content;
