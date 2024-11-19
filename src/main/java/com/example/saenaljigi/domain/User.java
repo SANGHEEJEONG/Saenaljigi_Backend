@@ -3,16 +3,17 @@ package com.example.saenaljigi.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
+import lombok.*;
 
 @Getter
-@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 생성 전략
     private Long id;
 
     private String username;
