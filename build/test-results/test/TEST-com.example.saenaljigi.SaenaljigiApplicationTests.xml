@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.saenaljigi.SaenaljigiApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-11-10T18:41:10" hostname="JEONGSANGHEE" time="1.063">
+<testsuite name="com.example.saenaljigi.SaenaljigiApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-11-18T06:19:14" hostname="JEONGSANGHEE" time="0.568">
   <properties/>
-  <testcase name="contextLoads()" classname="com.example.saenaljigi.SaenaljigiApplicationTests" time="1.063"/>
-  <system-out><![CDATA[03:41:06.576 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.saenaljigi.SaenaljigiApplicationTests]: SaenaljigiApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-03:41:06.710 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.saenaljigi.SaenaljigiApplication for test class com.example.saenaljigi.SaenaljigiApplicationTests
+  <testcase name="contextLoads()" classname="com.example.saenaljigi.SaenaljigiApplicationTests" time="0.568"/>
+  <system-out><![CDATA[15:19:06.540 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.saenaljigi.SaenaljigiApplicationTests]: SaenaljigiApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:19:06.672 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.saenaljigi.SaenaljigiApplication for test class com.example.saenaljigi.SaenaljigiApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -14,12 +14,94 @@
 
  :: Spring Boot ::                (v3.3.3)
 
-2024-11-11T03:41:07.219+09:00  INFO 3876 --- [    Test worker] c.e.s.SaenaljigiApplicationTests         : Starting SaenaljigiApplicationTests using Java 17.0.12 with PID 3876 (started by jshwj in C:\Users\jshwj\OneDrive\Saenaljigi_Backend)
-2024-11-11T03:41:07.221+09:00  INFO 3876 --- [    Test worker] c.e.s.SaenaljigiApplicationTests         : No active profile set, falling back to 1 default profile: "default"
-2024-11-11T03:41:09.175+09:00  WARN 3876 --- [    Test worker] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
-2024-11-11T03:41:09.394+09:00  INFO 3876 --- [    Test worker] c.e.s.SaenaljigiApplicationTests         : Started SaenaljigiApplicationTests in 2.415 seconds (process running for 3.997)
-상세 페이지 응답 데이터: 
-{"root":[{"regname":"행정실","file_view_flag5":"N","file_name1":"240708_중간정기퇴사 시 금액 환불 신청 방법 안내001.png","file_view_flag4":"N","file_view_flag3":"N","locgbn":"SJ","file_name2":"식비 환불 신청서_스위티움_퇴사확인필.hwp","viewpass":"SC","subject":"[기숙사] 중간/정기퇴사 시 금액 환불 신청 방법 안내","BBS_ID":"notice","top_flag":"Y","content_type":"A","contents":"<p><br><\/p>","img_view_flag":"Y","regdate":"2024-07-09","ref_seq":0,"visit_cnt":934,"regid":"sjdorm3","file_view_flag2":"N","file_view_flag1":"Y","seq":35946,"reply_cnt":0}]}
+2024-11-18T15:19:07.214+09:00  INFO 29048 --- [    Test worker] c.e.s.SaenaljigiApplicationTests         : Starting SaenaljigiApplicationTests using Java 17.0.12 with PID 29048 (started by jshwj in C:\Users\jshwj\OneDrive\Saenaljigi_Backend)
+2024-11-18T15:19:07.216+09:00  INFO 29048 --- [    Test worker] c.e.s.SaenaljigiApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2024-11-18T15:19:08.209+09:00  INFO 29048 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-18T15:19:08.291+09:00  INFO 29048 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 73 ms. Found 3 JPA repository interfaces.
+2024-11-18T15:19:08.872+09:00  INFO 29048 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-18T15:19:08.946+09:00  INFO 29048 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-18T15:19:08.989+09:00  INFO 29048 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-18T15:19:09.423+09:00  INFO 29048 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-18T15:19:09.459+09:00  INFO 29048 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-18T15:19:09.830+09:00  INFO 29048 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@45f1413c
+2024-11-18T15:19:09.833+09:00  INFO 29048 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-18T15:19:09.896+09:00  WARN 29048 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-11-18T15:19:09.897+09:00  WARN 29048 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-11-18T15:19:10.987+09:00  INFO 29048 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    alter table food 
+       drop 
+       foreign key FKfltt9pjq2kw53tdhyu8im1imp
+Hibernate: 
+    alter table menu 
+       drop 
+       foreign key FKdnm3en7ytpdxkwgklk6ljxrqb
+Hibernate: 
+    drop table if exists calendar
+Hibernate: 
+    drop table if exists food
+Hibernate: 
+    drop table if exists menu
+Hibernate: 
+    drop table if exists post
+Hibernate: 
+    drop table if exists post_seq
+Hibernate: 
+    create table calendar (
+        day date,
+        is_breakfast bit,
+        is_hilight bit,
+        id bigint not null auto_increment,
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table food (
+        is_selected bit not null,
+        id bigint not null auto_increment,
+        menu_id bigint not null,
+        food_name varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table menu (
+        is_check bit not null,
+        calendar_id bigint not null,
+        id bigint not null auto_increment,
+        food_time enum ('석식','조식','중식'),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table post (
+        comment_cnt bigint,
+        created_at datetime(6),
+        id bigint not null,
+        content varchar(255),
+        title varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table post_seq (
+        next_val bigint
+    ) engine=InnoDB
+Hibernate: 
+    insert into post_seq values ( 1 )
+Hibernate: 
+    alter table menu 
+       add constraint UKhllw6enpcmatvvwb72a2m95t7 unique (calendar_id, food_time)
+Hibernate: 
+    alter table food 
+       add constraint FKfltt9pjq2kw53tdhyu8im1imp 
+       foreign key (menu_id) 
+       references menu (id)
+Hibernate: 
+    alter table menu 
+       add constraint FKdnm3en7ytpdxkwgklk6ljxrqb 
+       foreign key (calendar_id) 
+       references calendar (id)
+2024-11-18T15:19:11.805+09:00  INFO 29048 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-18T15:19:12.606+09:00  WARN 29048 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-18T15:19:13.090+09:00  WARN 29048 --- [    Test worker] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-11-18T15:19:13.354+09:00  INFO 29048 --- [    Test worker] c.e.s.SaenaljigiApplicationTests         : Started SaenaljigiApplicationTests in 6.491 seconds (process running for 7.942)
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
