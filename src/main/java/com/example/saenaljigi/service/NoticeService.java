@@ -54,11 +54,11 @@ public class NoticeService {
 
                 List<Map<String, String>> parsedList = new ArrayList<>();
 
-                // 각 항목에서 subject와 regdate만 추출
+                // 각 항목에서 title과 createdAt만 추출
                 for (JsonNode item : topList) {
                     Map<String, String> noticeItem = new HashMap<>();
-                    noticeItem.put("subject", item.path("subject").asText());
-                    noticeItem.put("regdate", item.path("regdate").asText());
+                    noticeItem.put("title", item.path("subject").asText());
+                    noticeItem.put("createdAt", item.path("regdate").asText());
                     parsedList.add(noticeItem);
                 }
 

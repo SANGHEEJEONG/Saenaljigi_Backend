@@ -1,23 +1,28 @@
 package com.example.saenaljigi.domain;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Entity
 @Getter
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@AllArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 생성 전략
-    private Long id;
+    private Long studentId;
+    private String name;
+    private Long mealCnt;
+    private Long reward;
+    private Long penalty;
+    private Long totalCnt;
 
-    private String username;
-    private String password;
-    private String nickname;
-
+    public User(Long studentId, String name) {
+        this.studentId = studentId;
+        this.name = name;
+    }
 }

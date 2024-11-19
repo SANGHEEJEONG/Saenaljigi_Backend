@@ -1,0 +1,124 @@
+Error: Unable to access jarfile Saenaljigi-0.0.1-SNAPSHOT.jar
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.3)
+
+2024-11-17T01:53:34.854+09:00  INFO 34564 --- [           main] c.e.saenaljigi.SaenaljigiApplication     : Starting SaenaljigiApplication v0.0.1-SNAPSHOT using Java 22 with PID 34564 (C:\Users\jshwj\OneDrive\Saenaljigi_Backend\build\libs\Saenaljigi-0.0.1-SNAPSHOT.jar started by jshwj in C:\Users\jshwj\OneDrive\Saenaljigi_Backend)
+2024-11-17T01:53:34.858+09:00  INFO 34564 --- [           main] c.e.saenaljigi.SaenaljigiApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-11-17T01:53:36.141+09:00  INFO 34564 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-17T01:53:36.247+09:00  INFO 34564 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 93 ms. Found 3 JPA repository interfaces.
+2024-11-17T01:53:37.356+09:00  INFO 34564 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-17T01:53:37.383+09:00  INFO 34564 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-17T01:53:37.384+09:00  INFO 34564 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-11-17T01:53:37.465+09:00  INFO 34564 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-17T01:53:37.468+09:00  INFO 34564 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2540 ms
+2024-11-17T01:53:37.830+09:00  INFO 34564 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-17T01:53:37.899+09:00  INFO 34564 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-17T01:53:37.940+09:00  INFO 34564 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-17T01:53:38.520+09:00  INFO 34564 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-17T01:53:38.576+09:00  INFO 34564 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-17T01:53:39.132+09:00  INFO 34564 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@20890a1a
+2024-11-17T01:53:39.138+09:00  INFO 34564 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-17T01:53:39.224+09:00  WARN 34564 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-11-17T01:53:39.226+09:00  WARN 34564 --- [           main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-11-17T01:53:40.560+09:00  INFO 34564 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    alter table food 
+       drop 
+       foreign key FKfltt9pjq2kw53tdhyu8im1imp
+Hibernate: 
+    alter table menu 
+       drop 
+       foreign key FKdnm3en7ytpdxkwgklk6ljxrqb
+Hibernate: 
+    drop table if exists calendar
+Hibernate: 
+    drop table if exists food
+Hibernate: 
+    drop table if exists menu
+Hibernate: 
+    drop table if exists post
+Hibernate: 
+    drop table if exists post_seq
+Hibernate: 
+    create table calendar (
+        day date,
+        is_breakfast bit,
+        is_hilight bit,
+        id bigint not null auto_increment,
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table food (
+        is_selected bit not null,
+        id bigint not null auto_increment,
+        menu_id bigint not null,
+        food_name varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table menu (
+        is_check bit not null,
+        calendar_id bigint not null,
+        id bigint not null auto_increment,
+        food_time enum ('석식','조식','중식'),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table post (
+        comment_cnt bigint,
+        created_at datetime(6),
+        id bigint not null,
+        content varchar(255),
+        title varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table post_seq (
+        next_val bigint
+    ) engine=InnoDB
+Hibernate: 
+    insert into post_seq values ( 1 )
+Hibernate: 
+    alter table menu 
+       add constraint UKhllw6enpcmatvvwb72a2m95t7 unique (calendar_id, food_time)
+Hibernate: 
+    alter table food 
+       add constraint FKfltt9pjq2kw53tdhyu8im1imp 
+       foreign key (menu_id) 
+       references menu (id)
+Hibernate: 
+    alter table menu 
+       add constraint FKdnm3en7ytpdxkwgklk6ljxrqb 
+       foreign key (calendar_id) 
+       references calendar (id)
+2024-11-17T01:53:41.908+09:00  INFO 34564 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-17T01:53:42.794+09:00  WARN 34564 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-17T01:53:43.401+09:00  WARN 34564 --- [           main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-11-17T01:53:43.724+09:00  WARN 34564 --- [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2024-11-17T01:53:43.725+09:00  INFO 34564 --- [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-17T01:53:43.737+09:00  INFO 34564 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-17T01:53:43.752+09:00  INFO 34564 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-17T01:53:43.769+09:00  INFO 34564 --- [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-11-17T01:53:43.801+09:00 ERROR 34564 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
