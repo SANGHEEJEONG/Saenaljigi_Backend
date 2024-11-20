@@ -18,20 +18,20 @@ public class PostController {
     }
 
     @GetMapping("")
-    public List<PostDto> getRecentPosts(){
+    public List<PostDto> getAllPosts(){
 
-        return postService.getRecentPosts();
-
-    }
-    @GetMapping("/{writer}")
-    public List<PostDto> getPostsByWriter(@PathVariable("writer")String nickName){
-        return postService.getPostsByWriter(nickName);
-
+        return postService.getAllPosts();
 
     }
-    @GetMapping("/comments")
-    public List<PostDto> getPopularPosts(){
-
-        return postService.getPopularPosts();
-    }
+//    @GetMapping("/{writer}")
+//    public List<PostDto> getPostsByWriter(@PathVariable("writer")String nickName){
+//        return postService.getPostsByWriter(nickName);
+//
+//
+//    }
+//    @GetMapping("/comments")
+//    public List<PostDto> getPopularPosts(){
+//
+//        return postService.getPopularPosts();
+//    }
 }

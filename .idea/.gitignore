@@ -8,3 +8,4 @@
 /dataSources.local.xml
 ### yml 파일 ###
 *.yml
+/build/

@@ -39,8 +39,8 @@ public class MenuCrawlService {
 
     private static final String HAPPY_DORM_DATAS_URL = "https://happydorm.sejong.ac.kr/60/6050.kmc";
 
-//    @Scheduled(fixedDelay = 180000) // 일정 시간마다 실행되도록 설정
-    @Scheduled(cron = "0 0 3 ? * MON")
+//   @Scheduled(fixedDelay = 180000) // 일정 시간마다 실행되도록 설정
+   @Scheduled(cron = "0 0 3 ? * MON")
     public void scheduledCrawlMenu() throws IOException {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
