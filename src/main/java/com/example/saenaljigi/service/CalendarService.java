@@ -112,6 +112,7 @@ public List<CalendarDto> getAllCalendars() {
         List<MenuDto> menus = menuService.getMenusByCalendarId(calendar.getId());
 
         return CalendarDto.builder()
+                .id(calendar.getId())
                 .day(calendar.getDay())
                 .isHilight(calendar.getIsHilight())
                 .isBreakfast(calendar.getIsBreakfast())
