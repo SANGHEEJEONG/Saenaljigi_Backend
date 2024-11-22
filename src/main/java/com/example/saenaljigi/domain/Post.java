@@ -27,7 +27,7 @@ public class Post {
 
     private String title;
     private String content;
-    private String anonymousName;
+    private boolean anonymousName;
     private Long likeCnt;
     private Long commentCnt;
     private LocalDateTime createdAt;

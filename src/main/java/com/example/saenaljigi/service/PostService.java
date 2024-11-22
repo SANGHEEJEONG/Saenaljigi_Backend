@@ -8,8 +8,10 @@ import com.example.saenaljigi.repository.CommentRepository;
 import com.example.saenaljigi.repository.PostRepository;
 import com.example.saenaljigi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,21 +22,24 @@ public class PostService {
     private final UserRepository userRepository;
     private final CommentRepository commentRepository;
 
-    public PostDto create(Long userId,
-                          PostDto postDto){
+    public ResponseEntity<Void> create(Long userId,
+                                 String title,
+                                 String content,boolean isAnonymous){
         //Id 찾기
         User user = userRepository.findById(userId).orElseThrow();
         //만든 유처 post에 집어넣기
         Post post = Post.builder().
                 user(user).
-                title(postDto.getTitle()).
-                content(postDto.getContent()).
+                anonymousName(isAnonymous).
+                createdAt(LocalDateTime.now()).
+                title(title).
+                content(content).
                 build();
 
         //레포지토리에 저장하기
         postRepository.save(post);
 
-        return postDto;
+        return ResponseEntity.ok().build();
 
     }
 
