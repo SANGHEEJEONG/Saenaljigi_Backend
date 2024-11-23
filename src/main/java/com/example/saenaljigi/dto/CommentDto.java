@@ -18,7 +18,7 @@ public class CommentDto {
         this.id = comment.getId();
         this.postId = comment.getPost().getId();
         this.content = comment.getContent();
-        this.anonymousName = comment.getAnonymousName();
+        this.anonymousName = comment.isAnonymousName();
         this.replyCnt = comment.getReplyCnt();
         this.createdAt = comment.getCreatedAt();
 
@@ -26,7 +26,7 @@ public class CommentDto {
     private Long id;
     private Long postId;
     private String content;
-    private String anonymousName;
+    private boolean anonymousName;
     private Integer replyCnt;
     private LocalDateTime createdAt;
 }

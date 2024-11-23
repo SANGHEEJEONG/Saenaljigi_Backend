@@ -23,7 +23,7 @@ public class Comment {
     private Post post;
 
     private String content;
-    private String anonymousName;
+    private boolean anonymousName;
     private Integer replyCnt;
     private LocalDateTime createdAt;
 
