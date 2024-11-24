@@ -42,7 +42,7 @@ public class PostService {
         return ResponseEntity.ok().build();
 
     }
-
+//
     public List<PostDto> getAllPosts() {
         List<Post> posts = postRepository.findAll();
 
