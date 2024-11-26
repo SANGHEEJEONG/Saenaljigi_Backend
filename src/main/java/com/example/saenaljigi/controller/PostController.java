@@ -16,7 +16,7 @@ public class PostController {
     @PostMapping("")
     public ResponseEntity<Void> create(Long userId, @RequestParam("title")String title, @RequestParam("content")String content
 
-                          ){
+    ){
         postService.create(userId, title, content);
         return ResponseEntity.ok().build();
     }
