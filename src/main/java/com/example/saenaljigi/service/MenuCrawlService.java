@@ -3,7 +3,6 @@ package com.example.saenaljigi.service;
 import com.example.saenaljigi.domain.Calendar;
 import com.example.saenaljigi.dto.FoodDto;
 import com.example.saenaljigi.dto.MenuDto;
-import com.example.saenaljigi.util.FoodTime;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.RequiredArgsConstructor;
 import org.openqa.selenium.By;
@@ -39,8 +38,8 @@ public class MenuCrawlService {
 
     private static final String HAPPY_DORM_DATAS_URL = "https://happydorm.sejong.ac.kr/60/6050.kmc";
 
-//   @Scheduled(fixedDelay = 180000) // 일정 시간마다 실행되도록 설정
-   @Scheduled(cron = "0 0 3 ? * MON")
+//    @Scheduled(fixedDelay = 180000) // 일정 시간마다 실행되도록 설정
+    @Scheduled(cron = "0 0 3 ? * MON")
     public void scheduledCrawlMenu() throws IOException {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();

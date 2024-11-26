@@ -2,6 +2,7 @@ package com.example.saenaljigi.controller;
 
 import com.example.saenaljigi.service.NoticeDetailService;
 import com.example.saenaljigi.service.NoticeService;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,12 +28,12 @@ public class NoticeController {
         }
     }
 
-
     @PostMapping("/{seq}")
-    public ResponseEntity<String> getNoticeDetail(@PathVariable String seq) {
+    public ResponseEntity<Object> getNoticeDetail(@PathVariable String seq) {
         try {
-            noticeDetailService.noticeDetailCrawl(seq);
-            return ResponseEntity.ok("상세 페이지 요청이 성공적으로 완료되었습니다.");
+            ObjectNode noticeDetail = noticeDetailService.noticeDetailCrawl(seq);
+
+            return ResponseEntity.ok(noticeDetail);
         } catch (Exception e) {
             return ResponseEntity.status(500).body("상세 페이지 요청 중 에러 발생: " + e.getMessage());
         }
