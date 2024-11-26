@@ -23,8 +23,8 @@ public class PostService {
     private final CommentRepository commentRepository;
 
     public ResponseEntity<Void> create(Long userId,
-                                 String title,
-                                 String content){
+                                       String title,
+                                       String content){
         //Id 찾기
         User user = userRepository.findById(userId).orElseThrow();
         //만든 유처 post에 집어넣기
@@ -41,7 +41,7 @@ public class PostService {
         return ResponseEntity.ok().build();
 
     }
-//
+
     public List<PostDto> getAllPosts() {
         List<Post> posts = postRepository.findAll();
 

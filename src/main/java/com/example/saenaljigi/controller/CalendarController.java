@@ -14,10 +14,8 @@ import java.util.List;
 @RequestMapping("/calendar")
 public class CalendarController {
     private final CalendarService calendarService;
-
     @GetMapping("/day")
     public CalendarDto getCalendarByDate(@RequestParam("day")LocalDate day){
-
         return calendarService.getCalendarByDate(day);
     }
     @GetMapping("")

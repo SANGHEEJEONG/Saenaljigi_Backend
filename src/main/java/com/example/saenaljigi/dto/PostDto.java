@@ -2,6 +2,11 @@ package com.example.saenaljigi.dto;
 
 import com.example.saenaljigi.domain.Comment;
 import com.example.saenaljigi.domain.Post;
+import com.example.saenaljigi.domain.User;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,10 +21,7 @@ import java.util.stream.Collectors;
 public class PostDto {
     public PostDto(Post post,List<Comment> comments) {
         this.id = post.getId();
-        //this.userId = post.getUser().get();
-        // userId => 테이블 키
-        // username => 학번
-        // name => 이름
+        this.userId = post.getUser().getUserId();
 
         this.title = post.getTitle();
         this.content = post.getContent();
