@@ -40,6 +40,7 @@ public class SecurityConfig{
         http
                 .cors(auth -> auth.disable());
 
+
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/login", "/docs/**",
