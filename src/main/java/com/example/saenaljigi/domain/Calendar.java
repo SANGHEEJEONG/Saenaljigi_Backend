@@ -1,11 +1,7 @@
 package com.example.saenaljigi.domain;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 
@@ -24,6 +20,9 @@ public class Calendar {
     private LocalDate day;
     private Boolean isHilight;
     private Boolean isBreakfast;
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    private User user;
     public void updateHilight(boolean isHilight) {
         this.isHilight = isHilight;
     }
