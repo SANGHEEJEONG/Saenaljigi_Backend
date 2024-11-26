@@ -24,13 +24,12 @@ public class PostService {
 
     public ResponseEntity<Void> create(Long userId,
                                  String title,
-                                 String content,boolean isAnonymous){
+                                 String content){
         //Id 찾기
         User user = userRepository.findById(userId).orElseThrow();
         //만든 유처 post에 집어넣기
         Post post = Post.builder().
                 user(user).
-                anonymousName(isAnonymous).
                 createdAt(LocalDateTime.now()).
                 title(title).
                 content(content).
