@@ -6,12 +6,9 @@ import com.example.saenaljigi.domain.Menu;
 import com.example.saenaljigi.repository.CalendarRepository;
 import com.example.saenaljigi.repository.FoodRepository;
 import com.example.saenaljigi.repository.MenuRepository;
-import com.example.saenaljigi.util.FoodTime;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
-
-import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
@@ -22,18 +19,17 @@ public class FoodService {
     private final CalendarRepository calendarRepository;
 
     @Transactional
-    public void updateFoodSelection(Long menuId, boolean isSelected, String foodname) {
-        // 1. menuId와 foodname을 기준으로 Food 엔티티 조회
-        Food food = foodRepository.findByMenuIdAndName(menuId, foodname)
-                .orElseThrow(() -> new RuntimeException(
-                        "Food not found with menuId: " + menuId + ", foodname: " + foodname));
+    public void updateFoodSelection(Long foodId, boolean isSelected) {
+        // 1. Food 엔티티 조회 및 업데이트
+        Food food = foodRepository.findById(foodId)
+                .orElseThrow(() -> new RuntimeException("Food not found with id: " + foodId));
 
-        // 2. 엔티티의 선택 상태 업데이트
         food.updateSelected(isSelected);
         foodRepository.save(food);
 
         // 2. 관련 Menu 엔티티 조회 및 상태 업데이트
         Menu menu = food.getMenu();
+        Long menuId = menu.getId();
         Long calendarId = menu.getCalendar().getId();
 
         // 메뉴 내에 하나 이상의 Food가 선택되었는지 확인
