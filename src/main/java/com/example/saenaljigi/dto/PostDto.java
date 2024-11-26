@@ -25,7 +25,6 @@ public class PostDto {
 
         this.title = post.getTitle();
         this.content = post.getContent();
-        this.anonymousName = post.isAnonymousName();
         this.likeCnt = post.getLikeCnt();
         this.commentCnt = post.getCommentCnt();
         this.comments = comments.stream()
@@ -42,7 +41,6 @@ public class PostDto {
     private Long userId;
     private String title;
     private String content;
-    private boolean anonymousName;
     private Long likeCnt;
     private Long commentCnt;
     private List<CommentDto> comments;

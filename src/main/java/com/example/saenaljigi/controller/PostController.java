@@ -14,10 +14,10 @@ import java.util.List;
 public class PostController {
     private final PostService postService;
     @PostMapping("")
-    public ResponseEntity<Void> create(Long userId, @RequestParam("title")String title, @RequestParam("content")String content,@RequestParam("isAnonymous") boolean isAnonymous
+    public ResponseEntity<Void> create(Long userId, @RequestParam("title")String title, @RequestParam("content")String content
 
                           ){
-        postService.create(userId, title, content,isAnonymous);
+        postService.create(userId, title, content);
         return ResponseEntity.ok().build();
     }
 
