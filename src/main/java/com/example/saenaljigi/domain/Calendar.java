@@ -21,7 +21,7 @@ public class Calendar {
     private Boolean isHilight;
     private Boolean isBreakfast;
     @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
     private User user;
     public void updateHilight(boolean isHilight) {
         this.isHilight = isHilight;
