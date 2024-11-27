@@ -24,7 +24,7 @@ public class FoodService {
     @Transactional
     public void updateFoodSelection(Long menuId, boolean isSelected, String foodname) {
         // 1. menuId와 foodname을 기준으로 Food 엔티티 조회
-        Food food = foodRepository.findByMenuIdAndName(menuId, foodname)
+        Food food = foodRepository.findByMenuIdAndFoodName(menuId, foodname)
                 .orElseThrow(() -> new RuntimeException(
                         "Food not found with menuId: " + menuId + ", foodname: " + foodname));
 
