@@ -1,5 +1,6 @@
 package com.example.saenaljigi.controller;
 
+import com.example.saenaljigi.domain.Post;
 import com.example.saenaljigi.dto.PostDto;
 import com.example.saenaljigi.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,14 @@ public class PostController {
         return postService.getAllPosts();
 
     }
+    //likecnt 업데이트
+    @PostMapping("/like")
+    public void updateLikeCnt( @RequestParam Long postId, @RequestParam Long likeCnt){
+
+        postService.updateLikeCnt(postId,likeCnt);
+
+    }
+
 //    @GetMapping("/{writer}")
 //    public List<PostDto> getPostsByWriter(@PathVariable("writer")String nickName){
 //        return postService.getPostsByWriter(nickName);

@@ -16,4 +16,5 @@ public class CalendarDto {
     private Boolean isHilight;
     private Boolean isBreakfast;
     private List<MenuDto> menus;
+    private Long userId;
 }

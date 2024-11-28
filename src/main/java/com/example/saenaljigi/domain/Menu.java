@@ -20,7 +20,7 @@ public class Menu {
 
 @Enumerated(EnumType.STRING)
     private FoodTime foodTime;
-    private boolean isCheck;
+    private boolean isCheck=false;
 
     @ManyToOne
     @JoinColumn(name = "calendar_id", nullable = false)

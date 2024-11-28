@@ -53,6 +53,17 @@ public class PostService {
                 })
                 .collect(Collectors.toList());
     }
+
+    //좋아요 업데이트
+    public void updateLikeCnt(Long postId, Long likeCnt){
+        //post 찾기
+        Post post = postRepository.findById(postId).orElseThrow();
+
+        post.updateLikeCnt(likeCnt);
+
+
+    }
+
     //글 최신 순 글 조회
 
 //    public List<PostDto> getRecentPosts(){

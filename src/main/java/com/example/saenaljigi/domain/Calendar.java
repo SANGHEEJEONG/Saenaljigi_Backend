@@ -18,10 +18,10 @@ public class Calendar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate day;
-    private Boolean isHilight;
-    private Boolean isBreakfast;
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    private Boolean isHilight=false;
+    private Boolean isBreakfast=false;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id",nullable = true)
     private User user;
     public void updateHilight(boolean isHilight) {
         this.isHilight = isHilight;
