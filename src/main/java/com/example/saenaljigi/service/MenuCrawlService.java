@@ -38,8 +38,8 @@ public class MenuCrawlService {
 
     private static final String HAPPY_DORM_DATAS_URL = "https://happydorm.sejong.ac.kr/60/6050.kmc";
 
-//    @Scheduled(fixedDelay = 180000) // 일정 시간마다 실행되도록 설정
-    @Scheduled(cron = "0 0 3 ? * MON")
+    @Scheduled(fixedDelay = 180000) // 일정 시간마다 실행되도록 설정
+//    @Scheduled(cron = "0 0 3 ? * MON")
     public void scheduledCrawlMenu() throws IOException {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -108,7 +108,6 @@ public class MenuCrawlService {
             String mealText = mealElement.getText(); // 메뉴 텍스트 가져오기
             MenuDto menuDto = MenuDto.builder()
                     .foodTime(mealType)
-                    .isCheck(false)
                     .calendarId(calendar.getId())
                     .foods(parseFoods(mealText))
                     .build();
@@ -139,7 +138,6 @@ public class MenuCrawlService {
         for (String foodName : foodsArray) {
             FoodDto foodDto = FoodDto.builder()
                     .foodName(foodName.trim())
-                    .isSelected(false) // 초기 상태 설정
                     .build();
             foodDtos.add(foodDto);
         }

@@ -30,4 +30,7 @@ public class Post {
     private Long likeCnt;
     private Long commentCnt;
     private LocalDateTime createdAt;
+    public void updateLikeCnt(Long likeCnt) {
+        this.likeCnt = likeCnt;
+    }
 }

@@ -25,6 +25,7 @@ public class UserService {
 
     private final RestTemplate restTemplate;
     private final UserRepository userRepository;
+    private final CalendarService calendarService;
 
 
     public User isLoginSuccess(String loginUrl, UserRequest userRequest) throws LoginException {
@@ -89,6 +90,7 @@ public class UserService {
                     .mealCnt(userResponse.getMealCnt())
                     .build();
             userRepository.save(user);
+            calendarService.createDefaultCalendarsForUser(user);
 
             return user;
         }
