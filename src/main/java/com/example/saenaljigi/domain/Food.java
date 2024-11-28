@@ -14,7 +14,7 @@ public class Food {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String foodName;
-    private boolean isSelected;
+    private boolean isSelected=false;
     @ManyToOne
     @JoinColumn(name = "menu_id", nullable = false)
     private Menu menu;

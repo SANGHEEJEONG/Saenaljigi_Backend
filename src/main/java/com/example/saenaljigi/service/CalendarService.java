@@ -3,6 +3,7 @@ package com.example.saenaljigi.service;
 import com.example.saenaljigi.domain.Calendar;
 import com.example.saenaljigi.domain.Food;
 import com.example.saenaljigi.domain.Menu;
+import com.example.saenaljigi.domain.User;
 import com.example.saenaljigi.dto.CalendarDto;
 import com.example.saenaljigi.dto.FoodDto;
 import com.example.saenaljigi.dto.MenuDto;
@@ -26,37 +27,7 @@ public class CalendarService {
     private final FoodRepository foodRepository;
 
 
-//    @Transactional(readOnly = true)
-//    public List<CalendarDto> getAllCalendarsWithMenus() {
-//        List<Calendar> calendars = calendarRepository.findAll();
-//        return calendars.stream()
-//                .map(calendar -> {
-//                    List<MenuDto> menus = menuService.getMenusByCalendarId(calendar.getId());
-//                    return CalendarDto.builder()
-//                            .day(calendar.getDay())
-//                            .isHilight(calendar.getIsHilight())
-//                            .isBreakfast(calendar.getIsBreakfast())
-//                            .menus(menus)
-//                            .build();
-//                })
-//                .collect(Collectors.toList());
-//    }
 
-//    @Transactional(readOnly = true)
-//    public CalendarDto getCalendarWithMenus(Long calendarId) {
-//        Calendar calendar = calendarRepository.findById(calendarId)
-//                .orElseThrow(() -> new RuntimeException("Calendar not found with id " + calendarId));
-//
-//        // 관련된 메뉴 목록을 조회하여 MenuDto 리스트로 변환
-//        List<MenuDto> menus = menuService.getMenusByCalendarId(calendar.getId());
-//
-//        return CalendarDto.builder()
-//                .day(calendar.getDay())
-//                .isHilight(calendar.getIsHilight())
-//                .isBreakfast(calendar.getIsBreakfast())
-//                .menus(menus)
-//                .build();
-//    }
 @Transactional(readOnly = true)
 public List<CalendarDto> getAllCalendars() {
     List<Calendar> calendars = calendarRepository.findAll();
@@ -119,15 +90,36 @@ public List<CalendarDto> getAllCalendars() {
                 .menus(menus)
                 .build();
     }
-
+    @Transactional
+    public void createDefaultCalendarsForUser(User user) {
+        // 예시로 기본적인 캘린더 데이터 (일년 중 몇 개의 날짜들에 대한 캘린더)
+        for (int i = 1; i <= 7; i++) {  // 일주일 간의 캘린더 예시
+            LocalDate date = LocalDate.now().plusDays(i);
+            Calendar calendar = Calendar.builder()
+                    .day(date)
+                    .user(user)
+                    .build();
+            calendarRepository.save(calendar);
+        }
+    }
+//user별로 가져오도록 수정해야함
     @Transactional
     public Calendar getOrCreateCalendarByDate(LocalDate date) {
         return calendarRepository.findByDay(date)
                 .orElseGet(() -> calendarRepository.save(
                         Calendar.builder()
                                 .day(date)
-                                .isHilight(false)
-                                .isBreakfast(false)
+                                .user(null)
+                                .build()
+                ));
+    }
+    @Transactional
+    public Calendar getOrCreateUserCalendarByDate(LocalDate date, User user) {
+        return calendarRepository.findByDayAndUser(date, user)
+                .orElseGet(() -> calendarRepository.save(
+                        Calendar.builder()
+                                .day(date)
+                                .user(user)
                                 .build()
                 ));
     }
