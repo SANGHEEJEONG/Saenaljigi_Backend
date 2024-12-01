@@ -35,6 +35,13 @@ public class PostController {
         postService.updateLikeCnt(postId,likeCnt);
 
     }
+    //commentcnt 업데이트
+    @PostMapping("/comment")
+    public void updatecommentCnt( @RequestParam Long postId, @RequestParam Long commentCnt){
+
+        postService.updatecommentCnt(postId,commentCnt);
+
+    }
 
 //    @GetMapping("/{writer}")
 //    public List<PostDto> getPostsByWriter(@PathVariable("writer")String nickName){
