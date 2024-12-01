@@ -1,5 +1,6 @@
 package com.example.saenaljigi.controller;
 
+import com.example.saenaljigi.domain.User;
 import com.example.saenaljigi.dto.CalendarDto;
 import com.example.saenaljigi.service.CalendarService;
 import lombok.RequiredArgsConstructor;
@@ -14,14 +15,14 @@ import java.util.List;
 @RequestMapping("/calendar")
 public class CalendarController {
     private final CalendarService calendarService;
-    @GetMapping("/day")
-    public CalendarDto getCalendarByDate(@RequestParam("day")LocalDate day){
-        return calendarService.getCalendarByDate(day);
+    @GetMapping("/day/user")
+    public CalendarDto getCalendarByDateAndUser(@RequestParam("day")LocalDate day, User user){
+        return calendarService.getCalendarByDateAndUser(day,user);
     }
     @GetMapping("")
-    public List<CalendarDto> getAllCalendars(){
+    public List<CalendarDto> getAllCalendarsByUser(User user){
 
-        return calendarService.getAllCalendars();
+        return calendarService.getAllCalendarsByUser(user);
     }
     @PostMapping("/{calendarId}/breakfast")
     public ResponseEntity<Void> updateBreakfast(

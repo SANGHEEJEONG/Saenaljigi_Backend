@@ -60,7 +60,7 @@ public class MenuCrawlService {
 
                 // 날짜 텍스트를 가져와 Calendar에 해당 날짜가 있는지 확인
                 String dateText = driver.findElement(By.id(dateId)).getText();
-                Calendar calendar = getCalendarByDate(dateText);
+                Calendar calendar = getSystemCalendarByDate(dateText);
 
                 // 중식 중복 확인 후 저장
                 if (!menuService.existsByCalendarAndFoodTime(calendar, 중식)) {
@@ -120,12 +120,12 @@ public class MenuCrawlService {
     }
 
 
-    private Calendar getCalendarByDate(String dateText) {
+    private Calendar getSystemCalendarByDate(String dateText) {
         dateText = dateText.trim();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일");
         LocalDate date = LocalDate.parse(dateText, formatter);
-        return calendarService.getOrCreateCalendarByDate(date);
+        return calendarService.getOrCreateSystemCalendarByDate(date);
     }
 
 
