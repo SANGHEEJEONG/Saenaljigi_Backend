@@ -65,6 +65,7 @@ public class NoticeService {
                     // 각 항목에서 title과 createdAt만 추출하여 누적 리스트에 추가
                     for (JsonNode item : topList) {
                         Map<String, String> noticeItem = new HashMap<>();
+                        noticeItem.put("noticeId",item.path("seq").asText());
                         noticeItem.put("title", item.path("subject").asText());
                         noticeItem.put("createdAt", item.path("regdate").asText());
                         aggregatedList.add(noticeItem);

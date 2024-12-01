@@ -67,6 +67,7 @@ public class UserService {
                             .mealCnt(150L)
                             .build();
                     userRepository.save(user);
+                    calendarService.createDefaultCalendarsForUser(user);
                 }
 
                 return user;
