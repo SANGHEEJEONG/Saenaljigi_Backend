@@ -67,6 +67,7 @@ public class UserService {
                             .mealCnt(150L)
                             .build();
                     userRepository.save(user);
+                    calendarService.copySystemCalendarsToUser(user);
                 }
 
                 return user;
@@ -81,29 +82,6 @@ public class UserService {
 
 
 
-    @Transactional
-    public User saveUser(UserResponse userResponse) {
 
-        if (!userRepository.existsByUsername(userResponse.getUsername())) {
-            User user = User.builder()
-                    .username(userResponse.getUsername())
-                    .mealCnt(userResponse.getMealCnt())
-                    .build();
-            userRepository.save(user);
-            calendarService.createDefaultCalendarsForUser(user);
-
-            return user;
-        }
-        return userRepository.findByUsername(userResponse.getUsername());
-    }
-
-    public User findByUsername(String username) {
-        User user = userRepository.findByUsername(username);
-        if (user != null) {
-            return user;
-        }
-
-        throw new RuntimeException("User not found with username: " + username);
-    }
 }
 

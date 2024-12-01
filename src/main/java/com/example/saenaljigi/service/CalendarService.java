@@ -29,8 +29,8 @@ public class CalendarService {
 
 
 @Transactional(readOnly = true)
-public List<CalendarDto> getAllCalendars() {
-    List<Calendar> calendars = calendarRepository.findAll();
+public List<CalendarDto> getAllCalendarsByUser(User user) {
+    List<Calendar> calendars = calendarRepository.findAllByUser(user);
 
     return calendars.stream()
             .map(calendar -> {
@@ -75,34 +75,112 @@ public List<CalendarDto> getAllCalendars() {
             .collect(Collectors.toList());
 }
 
-    @Transactional(readOnly = true)
-    public CalendarDto getCalendarByDate(LocalDate day) {
-        Calendar calendar = calendarRepository.findByDay(day)
-                .orElseThrow(() -> new RuntimeException("Calendar not found for date " + day));
+//    @Transactional(readOnly = true)
+//    public CalendarDto getCalendarByDate(LocalDate day) {
+//        Calendar calendar = calendarRepository.findByDay(day)
+//                .orElseThrow(() -> new RuntimeException("Calendar not found for date " + day));
+//
+//        List<MenuDto> menus = menuService.getMenusByCalendarId(calendar.getId());
+//
+//        return CalendarDto.builder()
+//                .id(calendar.getId())
+//                .day(calendar.getDay())
+//                .isHilight(calendar.getIsHilight())
+//                .isBreakfast(calendar.getIsBreakfast())
+//                .menus(menus)
+//                .build();
+//    }
+@Transactional(readOnly = true)
+public CalendarDto getCalendarByDateAndUser(LocalDate day, User user) {
+    Calendar calendar = calendarRepository.findByDayAndUser(day, user)
+            .orElseThrow(() -> new RuntimeException("Calendar not found for date " + day + " and user " + user.getUserId()));
 
-        List<MenuDto> menus = menuService.getMenusByCalendarId(calendar.getId());
+    List<MenuDto> menus = menuService.getMenusByCalendarId(calendar.getId());
 
-        return CalendarDto.builder()
-                .id(calendar.getId())
-                .day(calendar.getDay())
-                .isHilight(calendar.getIsHilight())
-                .isBreakfast(calendar.getIsBreakfast())
-                .menus(menus)
+    return CalendarDto.builder()
+            .id(calendar.getId())
+            .day(calendar.getDay())
+            .isHilight(calendar.getIsHilight())
+            .isBreakfast(calendar.getIsBreakfast())
+            .menus(menus)
+            .build();
+}
+//    @Transactional
+//    public void createDefaultCalendarsForUser(User user) {
+//        // 예시로 기본적인 캘린더 데이터 (일년 중 몇 개의 날짜들에 대한 캘린더)
+//        for (int i = 1; i <= 7; i++) {  // 일주일 간의 캘린더 예시
+//            LocalDate date = LocalDate.now().plusDays(i);
+//            Calendar calendar = Calendar.builder()
+//                    .day(date)
+//                    .user(user)
+//                    .build();
+//            calendarRepository.save(calendar);
+//        }
+//    }
+@Transactional
+public void copySystemCalendarsToUser(User user) {
+    // 시스템(사용자 없는) 캘린더를 모두 조회
+    List<Calendar> systemCalendars = calendarRepository.findAllByUser(null);
+
+    for (Calendar systemCalendar : systemCalendars) {
+        // 새로운 사용자용 캘린더 생성
+        Calendar userCalendar = Calendar.builder()
+                .day(systemCalendar.getDay())
+                .user(user)
+                .isHilight(systemCalendar.getIsHilight())
+                .isBreakfast(systemCalendar.getIsBreakfast())
                 .build();
-    }
-    @Transactional
-    public void createDefaultCalendarsForUser(User user) {
-        // 예시로 기본적인 캘린더 데이터 (일년 중 몇 개의 날짜들에 대한 캘린더)
-        for (int i = 1; i <= 7; i++) {  // 일주일 간의 캘린더 예시
-            LocalDate date = LocalDate.now().plusDays(i);
-            Calendar calendar = Calendar.builder()
-                    .day(date)
-                    .user(user)
+        Calendar savedUserCalendar = calendarRepository.save(userCalendar);
+
+        // 시스템 캘린더의 모든 메뉴를 조회
+        List<Menu> systemMenus = menuRepository.findByCalendarId(systemCalendar.getId());
+
+        for (Menu systemMenu : systemMenus) {
+            // 새로운 사용자용 메뉴 생성
+            Menu newMenu = Menu.builder()
+                    .foodTime(systemMenu.getFoodTime())
+                    .isCheck(systemMenu.isCheck())
+                    .calendar(savedUserCalendar)
                     .build();
-            calendarRepository.save(calendar);
+            Menu savedMenu = menuRepository.save(newMenu);
+
+            // 시스템 메뉴의 모든 음식을 조회
+            List<Food> systemFoods = foodRepository.findByMenuId(systemMenu.getId());
+
+            for (Food systemFood : systemFoods) {
+                // 새로운 사용자용 음식 생성
+                Food newFood = Food.builder()
+                        .foodName(systemFood.getFoodName())
+                        .isSelected(systemFood.isSelected())
+                        .menu(savedMenu)
+                        .build();
+                foodRepository.save(newFood);
+            }
         }
     }
-//user별로 가져오도록 수정해야함
+}
+
+    // 기존 메서드: 사용자 없이 캘린더 조회 또는 생성
+    @Transactional
+    public Calendar getOrCreateSystemCalendarByDate(LocalDate date) {
+        List<Calendar> calendars = calendarRepository.findAllByDayAndUser(date, null);
+        if (calendars.isEmpty()) {
+            return calendarRepository.save(
+                    Calendar.builder()
+                            .day(date)
+                            .user(null)
+                            .build()
+            );
+        } else if (calendars.size() == 1) {
+            return calendars.get(0);
+        } else {
+            // 중복된 시스템 캘린더가 존재할 경우, 첫 번째를 반환하거나 예외를 던짐
+            // 여기서는 첫 번째를 반환하도록 함
+            return calendars.get(0);
+            // Alternatively, throw an exception
+            // throw new NonUniqueResultException("Multiple system Calendars found for date: " + date);
+        }
+    }
     @Transactional
     public Calendar getOrCreateCalendarByDate(LocalDate date) {
         return calendarRepository.findByDay(date)

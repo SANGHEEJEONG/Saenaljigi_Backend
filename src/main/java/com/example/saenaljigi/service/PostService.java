@@ -64,6 +64,15 @@ public class PostService {
 
     }
 
+    public void updatecommentCnt(Long postId, Long commentCnt){
+        //post 찾기
+        Post post = postRepository.findById(postId).orElseThrow();
+
+        post.updatecommentCnt(commentCnt);
+
+
+    }
+
     //글 최신 순 글 조회
 
 //    public List<PostDto> getRecentPosts(){
