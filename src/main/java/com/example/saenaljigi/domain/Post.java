@@ -33,4 +33,7 @@ public class Post {
     public void updateLikeCnt(Long likeCnt) {
         this.likeCnt = likeCnt;
     }
+    public void updatecommentCnt(Long commentCnt) {
+        this.commentCnt = commentCnt;
+    }
 }

@@ -30,7 +30,6 @@ public class FoodService {
 
         // 2. 엔티티의 선택 상태 업데이트
         food.updateSelected(isSelected);
-        foodRepository.save(food);
 
         // 2. 관련 Menu 엔티티 조회 및 상태 업데이트
         Menu menu = food.getMenu();
@@ -39,7 +38,7 @@ public class FoodService {
         // 메뉴 내에 하나 이상의 Food가 선택되었는지 확인
         boolean anySelectedInMenu = foodRepository.existsByMenuIdAndIsSelected(menuId, true);
         menu.updateCheck(anySelectedInMenu);
-        menuRepository.save(menu);
+
 
         // 3. 관련 Calendar 엔티티 조회 및 상태 업데이트
         // 캘린더 내에 하나 이상의 Menu가 체크되었는지 확인
@@ -47,7 +46,7 @@ public class FoodService {
         Calendar calendar = calendarRepository.findById(calendarId)
                 .orElseThrow(() -> new RuntimeException("Calendar not found with id: " + calendarId));
         calendar.updateHilight(anyCheckInCalendar);
-        calendarRepository.save(calendar);
+
     }
 
 
