@@ -29,8 +29,8 @@ public class CalendarService {
 
 
 @Transactional(readOnly = true)
-public List<CalendarDto> getAllCalendarsByUser(User user) {
-    List<Calendar> calendars = calendarRepository.findAllByUser(user);
+public List<CalendarDto> getAllCalendarsByUser(Long userId) {
+    List<Calendar> calendars = calendarRepository.findAllByUserUserId(userId);
 
     return calendars.stream()
             .map(calendar -> {
@@ -75,25 +75,11 @@ public List<CalendarDto> getAllCalendarsByUser(User user) {
             .collect(Collectors.toList());
 }
 
-//    @Transactional(readOnly = true)
-//    public CalendarDto getCalendarByDate(LocalDate day) {
-//        Calendar calendar = calendarRepository.findByDay(day)
-//                .orElseThrow(() -> new RuntimeException("Calendar not found for date " + day));
-//
-//        List<MenuDto> menus = menuService.getMenusByCalendarId(calendar.getId());
-//
-//        return CalendarDto.builder()
-//                .id(calendar.getId())
-//                .day(calendar.getDay())
-//                .isHilight(calendar.getIsHilight())
-//                .isBreakfast(calendar.getIsBreakfast())
-//                .menus(menus)
-//                .build();
-//    }
+
 @Transactional(readOnly = true)
-public CalendarDto getCalendarByDateAndUser(LocalDate day, User user) {
-    Calendar calendar = calendarRepository.findByDayAndUser(day, user)
-            .orElseThrow(() -> new RuntimeException("Calendar not found for date " + day + " and user " + user.getUserId()));
+public CalendarDto getCalendarByDateAndUser(LocalDate day, Long userId) {
+    Calendar calendar = calendarRepository.findByDayAndUserUserId(day, userId)
+            .orElseThrow(() -> new RuntimeException("Calendar not found for date " + day + " and user " + userId));
 
     List<MenuDto> menus = menuService.getMenusByCalendarId(calendar.getId());
 
@@ -105,22 +91,11 @@ public CalendarDto getCalendarByDateAndUser(LocalDate day, User user) {
             .menus(menus)
             .build();
 }
-//    @Transactional
-//    public void createDefaultCalendarsForUser(User user) {
-//        // 예시로 기본적인 캘린더 데이터 (일년 중 몇 개의 날짜들에 대한 캘린더)
-//        for (int i = 1; i <= 7; i++) {  // 일주일 간의 캘린더 예시
-//            LocalDate date = LocalDate.now().plusDays(i);
-//            Calendar calendar = Calendar.builder()
-//                    .day(date)
-//                    .user(user)
-//                    .build();
-//            calendarRepository.save(calendar);
-//        }
-//    }
+
 @Transactional
 public void copySystemCalendarsToUser(User user) {
     // 시스템(사용자 없는) 캘린더를 모두 조회
-    List<Calendar> systemCalendars = calendarRepository.findAllByUser(null);
+    List<Calendar> systemCalendars = calendarRepository.findAllByUserUserId(null);
 
     for (Calendar systemCalendar : systemCalendars) {
         // 새로운 사용자용 캘린더 생성
@@ -163,7 +138,7 @@ public void copySystemCalendarsToUser(User user) {
     // 기존 메서드: 사용자 없이 캘린더 조회 또는 생성
     @Transactional
     public Calendar getOrCreateSystemCalendarByDate(LocalDate date) {
-        List<Calendar> calendars = calendarRepository.findAllByDayAndUser(date, null);
+        List<Calendar> calendars = calendarRepository.findAllByDayAndUserUserId(date, null);
         if (calendars.isEmpty()) {
             return calendarRepository.save(
                     Calendar.builder()
@@ -181,26 +156,8 @@ public void copySystemCalendarsToUser(User user) {
             // throw new NonUniqueResultException("Multiple system Calendars found for date: " + date);
         }
     }
-    @Transactional
-    public Calendar getOrCreateCalendarByDate(LocalDate date) {
-        return calendarRepository.findByDay(date)
-                .orElseGet(() -> calendarRepository.save(
-                        Calendar.builder()
-                                .day(date)
-                                .user(null)
-                                .build()
-                ));
-    }
-    @Transactional
-    public Calendar getOrCreateUserCalendarByDate(LocalDate date, User user) {
-        return calendarRepository.findByDayAndUser(date, user)
-                .orElseGet(() -> calendarRepository.save(
-                        Calendar.builder()
-                                .day(date)
-                                .user(user)
-                                .build()
-                ));
-    }
+
+
 
     @Transactional
     public void updateBreakfast(Long calendarId, Boolean isBreakfast) {
