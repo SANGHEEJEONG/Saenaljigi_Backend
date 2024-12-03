@@ -28,6 +28,13 @@ public class PostController {
         return postService.getAllPosts();
 
     }
+    @GetMapping("/detail")
+    public PostDto getPost(@RequestParam Long postId){
+        return postService.getPost(postId);
+
+
+
+    }
     //likecnt 업데이트
     @PostMapping("/like")
     public void updateLikeCnt( @RequestParam Long postId, @RequestParam Long likeCnt){
@@ -43,15 +50,5 @@ public class PostController {
 
     }
 
-//    @GetMapping("/{writer}")
-//    public List<PostDto> getPostsByWriter(@PathVariable("writer")String nickName){
-//        return postService.getPostsByWriter(nickName);
-//
-//
-//    }
-//    @GetMapping("/comments")
-//    public List<PostDto> getPopularPosts(){
-//
-//        return postService.getPopularPosts();
-//    }
+
 }
