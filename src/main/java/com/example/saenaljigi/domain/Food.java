@@ -15,7 +15,7 @@ public class Food {
     private Long id;
     private String foodName;
     private boolean isSelected=false;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_id", nullable = false)
     private Menu menu;
     public void updateSelected(boolean isSelected) {
