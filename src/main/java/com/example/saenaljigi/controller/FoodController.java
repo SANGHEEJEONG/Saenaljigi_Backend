@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("food")
+@RequestMapping("/food")
 public class FoodController {
     private final FoodService foodService;
     @PutMapping("/select")
