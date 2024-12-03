@@ -22,7 +22,7 @@ public class Menu {
     private FoodTime foodTime;
     private boolean isCheck=false;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "calendar_id", nullable = false)
     private Calendar calendar;
 
