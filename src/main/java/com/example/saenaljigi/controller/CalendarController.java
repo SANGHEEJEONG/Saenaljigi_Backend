@@ -19,11 +19,11 @@ public class CalendarController {
     private final CalendarService calendarService;
     @GetMapping("/day/user")
     public CalendarDto getCalendarByDateAndUser(@RequestParam("day")LocalDate day,
-                                                @AuthenticationPrincipal Long userId){
+                                                @RequestParam Long userId){
         return calendarService.getCalendarByDateAndUser(day,userId);
     }
     @GetMapping("")
-    public List<CalendarDto> getAllCalendarsByUser(@AuthenticationPrincipal Long userId){
+    public List<CalendarDto> getAllCalendarsByUser(@RequestParam Long userId){
 
         return calendarService.getAllCalendarsByUser(userId);
     }
