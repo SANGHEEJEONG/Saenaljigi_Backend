@@ -10,6 +10,7 @@ import com.example.saenaljigi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,6 +34,8 @@ public class PostService {
                 createdAt(LocalDateTime.now()).
                 title(title).
                 content(content).
+                commentCnt(0L).
+                likeCnt(0L).
                 build();
 
         //레포지토리에 저장하기
@@ -61,7 +64,7 @@ public class PostService {
 
 
     }
-
+    @Transactional
     //좋아요 업데이트
     public void updateLikeCnt(Long postId, Long likeCnt){
         //post 찾기
@@ -71,7 +74,7 @@ public class PostService {
 
 
     }
-
+    @Transactional
     public void updatecommentCnt(Long postId, Long commentCnt){
         //post 찾기
         Post post = postRepository.findById(postId).orElseThrow();
