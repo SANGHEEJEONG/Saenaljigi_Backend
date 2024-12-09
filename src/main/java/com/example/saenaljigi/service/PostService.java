@@ -56,6 +56,18 @@ public class PostService {
                 })
                 .collect(Collectors.toList());
     }
+    public List<PostDto> getAllPostsByTime(){
+        List<Post> posts = postRepository.findAllByOrderByCreatedAtDesc();
+        // 각 Post에 대해 관련 댓글 조회
+        return posts.stream()
+                .map(post -> {
+                    List<Comment> comments = commentRepository.findByPostId(post.getId());
+                    return new PostDto(post, comments);
+                })
+                .collect(Collectors.toList());
+
+
+    }
     //게시물 상세보기
     public PostDto getPost(Long postId){
         Post post = postRepository.findById(postId).orElseThrow();
