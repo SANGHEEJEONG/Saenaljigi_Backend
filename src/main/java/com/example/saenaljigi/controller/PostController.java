@@ -21,6 +21,10 @@ public class PostController {
         postService.create(userId, title, content);
         return ResponseEntity.ok().build();
     }
+    @GetMapping("/time")
+    public List<PostDto> getAllPostsByTime(){
+        return postService.getAllPostsByTime();
+    }
 
     @GetMapping("")
     public List<PostDto> getAllPosts(){
